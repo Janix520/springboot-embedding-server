@@ -1,0 +1,19 @@
+# 构建产物与运行日志
+target/
+logs/
+work/
+*.log
+
+# 模型与分词器文件（体积大，按 README 下载）
+models/
+
+# IDE
+.idea/
+*.iml
+.vscode/
+*.ipr
+*.iws
+
+# 系统
+.DS_Store
+Thumbs.db

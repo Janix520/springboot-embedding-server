@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <parent>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-parent</artifactId>
+        <version>3.5.3</version>
+        <relativePath/>
+    </parent>
+
+    <groupId>com.police</groupId>
+    <artifactId>embedding-server</artifactId>
+    <version>1.0.0</version>
+    <name>embedding-server</name>
+    <description>Qwen3-Embedding ONNX 推理服务</description>
+
+    <properties>
+        <java.version>21</java.version>
+        <!-- 1.19.2 与 Windows/JDK 运行库兼容性已验证，勿随意升级 -->
+        <onnxruntime.version>1.19.2</onnxruntime.version>
+    </properties>
+
+    <dependencies>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-web</artifactId>
+        </dependency>
+
+        <!-- 默认 CPU 推理 -->
+        <dependency>
+            <groupId>com.microsoft.onnxruntime</groupId>
+            <artifactId>onnxruntime</artifactId>
+            <version>${onnxruntime.version}</version>
+        </dependency>
+
+        <!--
+          GPU 推理依赖（默认注释）。需要 GPU 时，注释掉上面的 onnxruntime 依赖，
+          去掉本段注释后重新打包。运行前提：CUDA 12.x + cuDNN 8.x。
+
+          <dependency>
+              <groupId>com.microsoft.onnxruntime</groupId>
+              <artifactId>onnxruntime_gpu</artifactId>
+              <version>${onnxruntime.version}</version>
+          </dependency>
+        -->
+
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-test</artifactId>
+            <scope>test</scope>
+        </dependency>
+    </dependencies>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+            </plugin>
+        </plugins>
+    </build>
+</project>
